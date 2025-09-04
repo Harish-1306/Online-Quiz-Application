@@ -32,7 +32,7 @@ protected void doPost(HttpServletRequest req,HttpServletResponse res)throws Serv
 		req.setAttribute("username", username);
 		req.setAttribute("name", name);
 		req.setAttribute("newpassword", newpassword);
-//		pr.print("<h3 style=\"color:red;\">enter same password  as newpassword</h3>");
+
 		RequestDispatcher dis=req.getRequestDispatcher("forgetpassword.jsp");
 		
 		dis.forward(req, res);
