@@ -31,7 +31,7 @@ protected void doPost(HttpServletRequest req,HttpServletResponse res)throws Serv
 	
 	if(data>0) {
 
-         req.setAttribute("message", role + " registered successfully!"); // optional message
+         req.setAttribute("message", role + " registered successfully!"); 
          RequestDispatcher rd = req.getRequestDispatcher("register.jsp");
          rd.forward(req, res);
 	}
