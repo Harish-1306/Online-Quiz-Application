@@ -83,20 +83,20 @@ h1 i {
 <table>
 <tr>
 <td>Username :</td>
-<td><input type="text" name="username" value="${username}"></td>
+<td><input type="text" name="username" value="${username}" required></td>
 </tr>
 
 <tr>
 <td>Name :</td>
-<td><input type="text" name="name" value="${name}"></td>
+<td><input type="text" name="name" value="${name}" required></td>
 </tr>
 <tr>
 <td>New password :</td>
-<td><input type="text" name="newpassword" value="${newpassword}"></td>
+<td><input type="text" name="newpassword" value="${newpassword}" required></td>
 </tr>
 <tr>
 <td>Confirm password :</td>
-<td><input type="password" name="confirmpassword"></td>
+<td><input type="password" name="confirmpassword" required></td>
 </tr>
 <tr><td><input type="submit" value="submit"></td></tr>
 

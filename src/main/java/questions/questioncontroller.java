@@ -2,6 +2,7 @@ package questions;
 
 import java.sql.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,7 @@ public class questioncontroller {
     private static final String USER = "postgres";
     private static final String PASSWORD = "123";
 
-    // Utility method for connection
-//   
+    
     private Connection getConnection() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
@@ -23,27 +23,7 @@ public class questioncontroller {
     }
 
 
-    // Insert a question
-//    public int save(questiondb qinsert) {
-//        String sql = "INSERT INTO questions(question, option_a, option_b, option_c, option_d, correct_option) VALUES (?,?,?,?,?,?)";
-//        try (Connection conn = getConnection();
-//             PreparedStatement pst = conn.prepareStatement(sql)) {
-//
-//            pst.setString(1, qinsert.getQuestion());
-//            pst.setString(2, qinsert.getOption_a());
-//            pst.setString(3, qinsert.getOption_b());
-//            pst.setString(4, qinsert.getOption_c());
-//            pst.setString(5, qinsert.getOption_d());
-//            pst.setString(6, qinsert.getCorrect_option());
-//
-//            int res = pst.executeUpdate();
-//            System.out.println(res > 0 ? "Row inserted" : "Insert failed");
-//            return res;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return 0;
-//        }
-//    }
+  
     public int save(questiondb qinsert) {
        
 
@@ -72,71 +52,48 @@ public class questioncontroller {
         }
     }
 
-    // Update question
-    public int update(questiondb qupdate, int q_no ,String oldQuestion) {
+    
+    public int update(questiondb q, Integer q_no, String oldQuestion) {
+        int result = 0;
         StringBuilder sql = new StringBuilder("UPDATE questions SET ");
         List<Object> values = new ArrayList<>();
 
-        if (qupdate.getQuestion() != null) {
-            sql.append("question = ?, ");
-            values.add(qupdate.getQuestion());
-        }
-        if (qupdate.getOption_a() != null) {
-            sql.append("option_a = ?, ");
-            values.add(qupdate.getOption_a());
-        }
-        if (qupdate.getOption_b() != null) {
-            sql.append("option_b = ?, ");
-            values.add(qupdate.getOption_b());
-        }
-        if (qupdate.getOption_c() != null) {
-            sql.append("option_c = ?, ");
-            values.add(qupdate.getOption_c());
-        }
-        if (qupdate.getOption_d() != null) {
-            sql.append("option_d = ?, ");
-            values.add(qupdate.getOption_d());
-        }
-        if (qupdate.getCorrect_option() != null) {
-            sql.append("correct_option = ?, ");
-            values.add(qupdate.getCorrect_option());
-        }
+        if (q.getQuestion() != null) { sql.append("question=?, "); values.add(q.getQuestion()); }
+        if (q.getOption_a() != null) { sql.append("option_a=?, "); values.add(q.getOption_a()); }
+        if (q.getOption_b() != null) { sql.append("option_b=?, "); values.add(q.getOption_b()); }
+        if (q.getOption_c() != null) { sql.append("option_c=?, "); values.add(q.getOption_c()); }
+        if (q.getOption_d() != null) { sql.append("option_d=?, "); values.add(q.getOption_d()); }
+        if (q.getCorrect_option() != null) { sql.append("correct_option=?, "); values.add(q.getCorrect_option()); }
 
-        if (values.isEmpty()) {
-            System.out.println(" No fields to update!");
-            return 0;
-        }
+        if (values.isEmpty()) return 0; // Nothing to update
+        sql.setLength(sql.length() - 2); // remove last comma
 
-        // Remove last comma
-        sql.setLength(sql.length() - 2);
-        if ( q_no > 0) {
-            sql.append(" WHERE q_no = ?");
+        if (q_no != null && q_no > 0) {
+            sql.append(" WHERE q_no=?");
             values.add(q_no);
         } else if (oldQuestion != null && !oldQuestion.trim().isEmpty()) {
-            sql.append(" WHERE question = ?");
+            sql.append(" WHERE question=?");
             values.add(oldQuestion);
         } else {
-            System.out.println("No valid WHERE condition given!");
-            return 0;
+            return 0; // Neither q_no nor oldQuestion provided
         }
 
-        try (Connection conn = getConnection();
-             PreparedStatement pst = conn.prepareStatement(sql.toString())) {
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement(sql.toString())) {
 
             for (int i = 0; i < values.size(); i++) {
-                pst.setObject(i + 1, values.get(i));
+                ps.setObject(i + 1, values.get(i));
             }
 
-            int res = pst.executeUpdate();
-            System.out.println(res > 0 ? "Data updated successfully" : "No rows updated");
-            return res;
+            result = ps.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
         }
-    }
 
-    // Delete question
+        return result;
+    }
+    
     public int delete(questiondb qdelete) {
         String dsql;
         boolean byId = qdelete.getQ_no() > 0;
@@ -205,7 +162,7 @@ public class questioncontroller {
     }
 
 
-    // Fetch all questions
+    
     public List<questiondb> fetchAll() {
         List<questiondb> list = new ArrayList<>();
         String sql = "SELECT * FROM questions";
@@ -223,7 +180,7 @@ public class questioncontroller {
         return list;
     }
 
-    // Utility method to map ResultSet → questiondb object
+    
     private questiondb mapResultSet(ResultSet rs) throws SQLException {
         questiondb q = new questiondb();
         q.setQ_no(rs.getInt("q_no"));
