@@ -17,7 +17,7 @@ import questions.questiondb;
 public class dashboardfns extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Use questioncontroller instance
+   
     private questioncontroller qc = new questioncontroller();
 
     @Override
@@ -43,13 +43,13 @@ public class dashboardfns extends HttpServlet {
             rd.forward(request, response);
 
         } else if ("viewall".equalsIgnoreCase(action)) {
-            // Fetch all questions using questioncontroller
+           r
             List<questiondb> questions = qc.fetchAll();
 
-            // Set data in request scope
+        
             request.setAttribute("questions", questions);
 
-            // Forward to viewall.jsp
+            
             RequestDispatcher rd = request.getRequestDispatcher("viewall.jsp");
             rd.forward(request, response);
         } else {
