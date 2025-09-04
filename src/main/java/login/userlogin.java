@@ -24,10 +24,10 @@ public class userlogin extends HttpServlet {
         String role = db.uverify(username, password);
 
         if (role.equals("User")) {
-            int uid = db.getUserId(username); // fetch uid from DB
+            int uid = db.getUserId(username); 
 
             HttpSession session = req.getSession();
-            session.setAttribute("uid", uid);          // store uid in session
+            session.setAttribute("uid", uid);          
             session.setAttribute("username", username);
 
             RequestDispatcher dis1 = req.getRequestDispatcher("quizinstruction.jsp");
