@@ -65,8 +65,8 @@ public class questioncontroller {
         if (q.getOption_d() != null) { sql.append("option_d=?, "); values.add(q.getOption_d()); }
         if (q.getCorrect_option() != null) { sql.append("correct_option=?, "); values.add(q.getCorrect_option()); }
 
-        if (values.isEmpty()) return 0; // Nothing to update
-        sql.setLength(sql.length() - 2); // remove last comma
+        if (values.isEmpty()) return 0; 
+        sql.setLength(sql.length() - 2); 
 
         if (q_no != null && q_no > 0) {
             sql.append(" WHERE q_no=?");
@@ -125,7 +125,7 @@ public class questioncontroller {
         }
     }
 
-    // Fetch single question by ID
+    
     public questiondb fetch(questiondb qobj) {
         if (qobj == null) return null;
 
