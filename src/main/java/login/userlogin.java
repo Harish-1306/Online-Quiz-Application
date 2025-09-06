@@ -37,7 +37,7 @@ public class userlogin extends HttpServlet {
             dis.forward(req, res);
         } else {
             PrintWriter pr = res.getWriter();
-            pr.print("<h1>Invalid user credentials !!!</h1>");
+            pr.print("<h1 style=\"margin-top:-500px; color:red; font-family:Arial;\">Invalid user credentials !!!</h1>");
             RequestDispatcher dis2 = req.getRequestDispatcher("login.jsp");
             dis2.include(req, res);
         }
