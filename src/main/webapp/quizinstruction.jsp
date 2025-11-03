@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,10 +15,10 @@ padding:3px;}
 <form action="instruction" method="post">
 <header style="text-align:center;"><h1>Quiz Instructions</h1></header>
 <h2>Instructions :</h2>
-<h3>1. There is a timer running on the top of the page keep your eye on it.</h3>
+<h3>1. There will be a timer running on the top of the page, keep your eye on it.</h3>
 <h3>2. Quiz should be completed within the given time.</h3>
-<h3>3. If you fail to complete the quiz within the given your response will be autosubmitted.</h3>
-<h3>4. If you are ready to start the quiz click on the proceed button.</h3><br><br>
+<h3>3. If you fail to complete the quiz within the given time then,your response will be autosubmitted.</h3>
+<h3>4. If you are ready to start the quiz, click on the proceed button.</h3><br><br>
 <a  href="quiz.jsp" style="background-color:aqua; color:black">Proceed</a>
 </form>
 </body>
