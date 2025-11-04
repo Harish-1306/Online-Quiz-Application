@@ -21,6 +21,12 @@
         .options input { margin-right: 10px; }
         #timer { font-size: 20px; color: red; margin-bottom: 20px; }
         .submit-btn { padding: 10px 20px; font-size: 16px; }
+         .submit-btn:hover {
+  background-color: #45a049;  
+  transform: scale(1.05);     
+  transition: 0.3s;  
+  cursor:pointer;        
+}
     </style>
     <script>
         let totalTime = <%= totalQuestions %> * 60; // 1 minute per question
