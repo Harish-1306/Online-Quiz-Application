@@ -43,7 +43,7 @@ public class dashboardfns extends HttpServlet {
             rd.forward(request, response);
 
         } else if ("viewall".equalsIgnoreCase(action)) {
-           r
+           
             List<questiondb> questions = qc.fetchAll();
 
         
