@@ -32,13 +32,13 @@ protected void doPost(HttpServletRequest req,HttpServletResponse res)throws Serv
 	if(data>0) {
 
          req.setAttribute("message", role + " registered successfully!"); 
-         RequestDispatcher rd = req.getRequestDispatcher("register.jsp");
+         RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
          rd.forward(req, res);
 	}
 	else {
 		PrintWriter pr=res.getWriter();
 		pr.print("<h1 style='color:red; text-align:center; margin-top:20px;'>user already exist !</h1>");
-		RequestDispatcher reqdis3=req.getRequestDispatcher("register.jsp");
+		RequestDispatcher reqdis3=req.getRequestDispatcher("index.jsp");
 		reqdis3.include(req, res);
 	}
 	
